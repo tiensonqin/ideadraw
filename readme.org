@@ -7,7 +7,7 @@
      cp backend/src/api/config.clj.example backend/src/api/config.clj
      cp fabfile.py.example fabfile.py
 
-     # 2. Create database ideadraw && import sql.init
+     # 2. Create database ideadraw && import `backend/resources/sql/init.sql`
 
      # 3. Start server
      cd backend && lein run
