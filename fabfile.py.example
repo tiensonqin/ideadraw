@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from fabric.api import *
+
+# control output
+# output['stderr'] = False
+# output['stdout'] = False
+
+env.version="stage"
+
+def stage():
+    # Server username and hostname
+    env.version="stage"
+    env.branch="develop"
+    env.environment='stage'
+    env.user='xxxx'
+    env.key_filename = 'xxxx.pem'
+    env.hosts = ['xxxx.com']
+    env.base_dir = "/opt/projects"
+
+def production():
+    # Server username and hostname
+    env.version="production"
+    env.branch="master"
+    env.enviroment='production'
+    env.lein_root='true'
+    env.user='xxxx'
+    env.key_filename = 'xxxx.pem'
+    env.hosts = ['xxx.com']
+    env.base_dir = "/opt/projects"
+
+def web():
+    local('cd web && ./deploy.cljs')
+
+def build():
+    local('cd backend && lein clean && cd .. &&  tar zcvf backend.tar.gz ./backend && tar zcvf share.tar.gz ./share')
+    put('backend.tar.gz', '/opt/apps/ideadraw', use_sudo=False)
+    put('share.tar.gz', '/opt/apps/ideadraw', use_sudo=False)
+    run('cd /opt/apps/ideadraw && tar xzvf backend.tar.gz && tar xzvf share.tar.gz && cd backend && lein clean && lein uberjar')
+
+def restart():
+    sudo("/usr/bin/graceful_restart_ideadraw", pty=False)
+
+def deploy():
+    web()
+    build()
+    restart()
+
+# server deploy
+def sdeploy():
+    build()
+    restart()

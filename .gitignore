@@ -1,0 +1,17 @@
+api.tar.gz
+__pycache__
+api/target/
+web/target/
+web/node_modules/
+web/public/js
+web/deploy/
+web/.shadow-cljs/
+/backend.tar.gz
+/share.tar.gz
+/web/public/style.css
+/web/public/main*.js
+/web/public/sw.js
+backend/resources/public/
+backend/src/api/config.clj
+backend/.lein-env
+fabfile.py

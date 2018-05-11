@@ -1,0 +1,50 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["../share" "src" "dev"]
+
+ :dependencies [
+                ;; only for dev
+                [binaryage/devtools "0.9.7"]
+                [cider/cider-nrepl "0.16.0-SNAPSHOT"]
+
+                ;; production
+                [tiensonqin/appkit "0.1.0-SNAPSHOT"]
+                [bidi "2.1.2"]
+                [prismatic/dommy "1.1.0"]
+                [kibu/pushy "0.3.8"]
+                [rum                        "0.11.2"]
+                [com.cognitect/transit-cljs "0.8.243"]
+                [com.andrewmcveigh/cljs-time "0.5.2"]]
+
+ ;; set an nrepl port for connection to a REPL.
+ :nrepl        {:port 8777}
+
+ :builds
+ {:app {:target :browser
+        :output-dir "public/js/compiled"
+        :asset-path "/js/compiled"
+
+        :compiler-options
+        {:language-in :ecmascript6
+         :externs ["externs.js"]
+         :infer-externs :auto
+
+         ;; only for debug
+         ;; :pseudo-names true
+         ;; :pretty-print true
+         }
+
+        :modules
+        {:main {:entries [web.core]}}
+
+        :devtools
+        ;; before live-reloading any code call this function
+        {:before-load web.core/stop
+         ;; after live-reloading finishes call this function
+         :after-load web.core/start
+         ;; serve the public directory over http at port 8700
+         ;; :http-root    "public"
+         ;; :http-port 8700
+         ;; :http-handler shadow.http.push-state/handle
+         ;; :preloads     [devtools.preload]
+         }}}}

@@ -1,0 +1,6 @@
+-/.git
+-/api/target/
+-/web/target/
+-/web/node_modules/
+-/web/public/js
+-/web/deploy/

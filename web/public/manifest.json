@@ -1,0 +1,30 @@
+{
+  "short_name": "Ideadraw",
+  "name": "Ideadraw",
+  "icons": [
+    {
+      "src": "images/logo-1x.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "images/logo-2x.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "images/logo-3x.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/logo-4x.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#008B8B",
+  "theme_color": "#008B8B",
+  "display": "standalone",
+  "start_url": "/?utm_source=homescreen"
+}

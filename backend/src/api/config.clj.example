@@ -1,0 +1,54 @@
+(ns api.config
+  (:require [environ.core :refer [env]]
+            [share.util :as util]
+            [share.config :as config]))
+
+(def config
+  (let [default-env "dev"
+        environment (or (:env env) default-env)]
+    {:http-port (Integer. (or (:port env) 8082))
+     :ssr-port (Integer. (or (:ssr-port env) 8083))
+     :env environment
+     :hikari-spec {:auto-commit        true
+                   :read-only          false
+                   :connection-timeout 30000
+                   :validation-timeout 5000
+                   :idle-timeout       600000
+                   :max-lifetime       1800000
+                   :minimum-idle       10
+                   :maximum-pool-size 48
+                   :pool-name          "db-pool"
+                   :adapter            "postgresql"
+                   :username           (or (:pg-user env) "xxxx")
+                   :password           (or (:pg-password env) "xxxx")
+                   :database-name      "xxxx"
+                   :server-name        "localhost"
+                   :port-number        5432
+                   :register-mbeans    false}
+
+     :oauth {:twitter {:app-key "xxxx"
+                       :app-secret "xxxx"}
+             :google  {:app-key (if util/development?
+                                  "xxxx.apps.googleusercontent.com"
+                                  "xxxx.apps.googleusercontent.com")
+                       :app-secret (if util/development?
+                                     "xxxx"
+                                     "xxxx")}}
+     :aws {:access-key "xxxx"
+           :secret-key "xxxx"
+           :endpoint   "xxxx"}
+
+     :log-path (or (:log-path env) "xxxx")
+     :flake-path (or (:flake-path env) "/opt/project/flake-timestamp-dets")
+     :error-uri (str config/website "/error.html")
+     :img-cdn "xxxx"
+     :img-distribution-id "xxxx"
+     :website-cdn (if util/development? "" "xxxx")
+     :website-uri config/website
+     :ssr-cookie-hash            "xxxx"
+     :api-cookie-hash            "xxxx"
+     :jwt-hash                   "xxxx"
+     :slack {:new-hook           "xxxx"
+             :api-exception-hook "xxxx"
+             :api-latency-hook   "xxxx"}
+     }))

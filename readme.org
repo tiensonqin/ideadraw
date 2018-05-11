@@ -1,0 +1,19 @@
+* Ideadraw
+  Draw your idea, :)
+
+** Usage
+   #+BEGIN_SRC shell
+     # 1. Update configurations
+     cp backend/src/api/config.clj.example backend/src/api/config.clj
+     cp fabfile.py.example fabfile.py
+
+     # 2. Create database ideadraw && import sql.init
+
+     # 3. Start our server
+   #+END_SRC
+
+** License
+Copyright © 2018 Tienson Qin
+
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.

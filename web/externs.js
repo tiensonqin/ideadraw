@@ -1,0 +1,37 @@
+var workbox = {
+  clientsClaim: function(){},
+  loadModule: function(string){},
+  setConfig: function(object){},
+  skipWaiting: function(){},
+  core: {
+    cacheNames: {},
+    LOG_LEVELS: {},
+    setCacheNameDetails: function(){},
+    setLogLevel: function(){},
+  },
+  precaching: {
+    PrecacheController: {},
+    addPlugins: function(){},
+    addRoute: function (object){},
+    precache: function(){},
+    precacheAndRoute: function(){},
+    supressWarnings: function(){},
+    CleanupResult: {},
+    InstallResult: {},
+    PrecacheEntry: {},
+  },
+  strategies: {
+    cacheFirst: function(){},
+    cacheOnly: function(){},
+    networkFirst: function(){},
+    networkOnly: function(){},
+    staleWhileRevalidate: function(){},
+  },
+  routing: {},
+  expiration: {},
+  backgroundSync: {},
+  googleAnalytics: {},
+  cacheableResponse: {},
+  broadcastUpdate: {},
+  rangeRequests: {}
+}

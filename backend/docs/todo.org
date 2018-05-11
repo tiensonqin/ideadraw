@@ -1,0 +1,75 @@
+* TODOS
+
+** social login
+
+*** Github
+*** Google
+*** Should allow ideadraw user
+
+** DONE group drag
+   CLOSED: [2018-04-24 Tue 18:03]
+** DONE resize
+   CLOSED: [2018-04-24 Tue 19:31]
+   set bounds
+** DONE delete
+   CLOSED: [2018-04-26 Thu 12:24]
+** DONE copy paste
+   CLOSED: [2018-04-26 Thu 13:22]
+** DONE connect
+   CLOSED: [2018-04-26 Thu 17:44]
+** DONE connect expand
+   CLOSED: [2018-04-26 Thu 18:56]
+** DONE [#A] data spec
+   CLOSED: [2018-04-28 Sat 18:42]
+** DONE [#C] connect with multiple directions
+   CLOSED: [2018-05-01 Tue 13:40]
+
+** DONE [#A] auto expand or contract connect
+   CLOSED: [2018-05-02 Wed 13:45]
+** DONE [#A] export png
+   CLOSED: [2018-05-02 Wed 14:49]
+** DONE [#A] pan && zoom
+   CLOSED: [2018-05-03 Thu 13:06]
+   http://matthiasberth.com/tech/stable-zoom-and-pan-in-paperjs
+** DONE [#A] undo && redo history
+   CLOSED: [2018-05-03 Thu 19:38]
+   store json, document-id => [snapshots(limit 20)] (start with memory)
+
+** DONE [#A] expands rework
+   CLOSED: [2018-05-04 Fri 19:46]
+** DONE expands scale
+   CLOSED: [2018-05-05 Sat 11:39]
+** DONE expands resize rect
+   CLOSED: [2018-05-05 Sat 11:39]
+** DONE [#A] select drag drop
+   CLOSED: [2018-05-08 Tue 17:09]
+
+** DONE [#A] center text
+   CLOSED: [2018-05-10 Thu 12:30]
+** DONE Shape
+   CLOSED: [2018-05-10 Thu 17:19]
+*** DONE Rectangle
+    CLOSED: [2018-05-10 Thu 15:12]
+*** DONE Circle
+    CLOSED: [2018-05-10 Thu 15:53]
+*** TODO Polygon
+*** TODO line
+
+** DONE [#A] pencil
+   CLOSED: [2018-05-10 Thu 17:52]
+
+** DONE [#A] image
+   CLOSED: [2018-05-10 Thu 18:38]
+** DONE [#A] shortcut
+   CLOSED: [2018-05-10 Thu 19:20]
+** TODO [#A] save
+** TODO [#A] interactive
+** TODO [#A] convert graph data (edn or json) to paper canvas
+** TODO [#C] toolbar
+strokeColor fillcolor rotate sides
+** TODO [#C] components
+** TODO [#C] mobile support
+** TODO [#C] copy connections
+
+** draw resources
+   1. http://jsfiddle.net/pgkrvcdr/2/
