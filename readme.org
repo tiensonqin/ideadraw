@@ -9,7 +9,13 @@
 
      # 2. Create database ideadraw && import sql.init
 
-     # 3. Start our server
+     # 3. Start server
+     cd backend && lein run
+
+     # 4. Open another tab and start web app
+     cd web && yarn install && yarn watch
+
+     # 5. Open `http://localhost:8083`, that's it!
    #+END_SRC
 
 ** License
