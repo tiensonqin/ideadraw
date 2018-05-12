@@ -43,7 +43,6 @@
      :error-uri (str config/website "/error.html")
      :img-cdn "xxxx"
      :img-distribution-id "xxxx"
-     :website-cdn (if util/development? "" "xxxx")
      :website-uri config/website
      :ssr-cookie-hash            "xxxx"
      :api-cookie-hash            "xxxx"

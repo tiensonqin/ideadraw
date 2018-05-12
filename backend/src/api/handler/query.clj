@@ -17,6 +17,7 @@
             [api.services.slack :as slack]))
 
 ;; TODO: support recurisve
+
 (defn get-current-user
   [{:keys [uid datasource]} data]
   (if uid

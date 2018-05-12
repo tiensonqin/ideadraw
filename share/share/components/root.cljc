@@ -8,6 +8,8 @@
             [share.mixins :as mixins]
             [share.helpers.form :as form]
             [share.helpers.image :as image]
+            [share.components.login :as login]
+            [share.components.user :as user]
             #?(:cljs [web.paper :as p])
             #?(:cljs [web.component :as dc])
             #?(:cljs [goog.dom :as gdom])
@@ -43,7 +45,7 @@
 
        (mixins/listen state js/window :wheel
                       (fn [e]
-                        (citrus/dispatch! :draw/mouse-wheel (.getBrowserEvent e)))))
+                        (citrus/dispatch! :draw/mouse-wheel (.getBrowserEvent ^js e)))))
      :clj identity))
 
 (defn tool-listeners
@@ -370,17 +372,25 @@
                 (tool-listeners tool))))))
      state)}
   [reconciler]
-  (let [current-action (citrus/react [:draw :current-action])
+  (let [current-user (citrus/react [:user :current])
+        current-action (citrus/react [:draw :current-action])
         input-mode? (citrus/react [:draw :input-mode?])
         resize-direction (citrus/react [:draw :resize-direction])]
     [:div#draw {:style {:background "#ddd"}}
+     (if current-user
+       (user/avatar current-user)
+       (login/login-button))
+
+     (login/signup-modal)
+
      [:div#select-area {:style {:border "1px dotted #000"
                                 :position "absolute"}
                         :hidden true}]
 
      (actions current-action)
 
-     (zoom)
+     (when (util/mobile?)
+         (zoom))
 
      (let [{:keys [width height]} (util/get-layout)]
        [:canvas {:key "canvas"

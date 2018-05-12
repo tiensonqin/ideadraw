@@ -47,7 +47,7 @@
                                      :content-length length
                                      :cache-control "public, max-age=31536000"}))
          (str (:img-cdn config)
-              "/pics" (str/replace name "pics" ""))))
+              (str/replace name "pics" ""))))
      (catch Exception e
        (t/error e)
        false)))
@@ -65,11 +65,10 @@
     (if (and tempfile length)
       (try
         (let [name (if name name (flake-id->str))
-              name (if (su/development?) (str "development_" name) name)
+              name (if su/development? (str "development/" name) name)
               original-name name
               name (format "pics/%s.%s" name image-type)
-              {:keys [access-key secret-key endpoint]} (:aws config)
-              path (str "/pics" (str/replace name "pics" ""))]
+              {:keys [access-key secret-key endpoint]} (:aws config)]
           (core/with-credential [access-key secret-key endpoint]
             (s3/put-object :bucket-name "ideadraw"
                            :key name
@@ -80,20 +79,8 @@
                                       :cache-control "public, max-age=31536000"
                                       }
                            :file tempfile))
-          (if (and invalidate? (util/production?))
-            (future
-              (try
-                (cloudfront-invalidate
-                (let [name (str "/" (bidi/url-encode original-name) "." image-type)]
-                  [(str "/pics/" (bidi/url-encode original-name) "." image-type)
-                   (str "/pics/tiny" name)
-                   (str "/pics/small" name)
-                   (str "/pics/middle" name)
-                   (str "/pics/large" name)]))
-                (catch Exception e
-                  (slack/error e)
-                  false))))
-          (str (:img-cdn config) path))
+          (str (:img-cdn config)
+               (str/replace name "pics" "")))
         (catch Exception e
           (slack/error e)
           false)))))

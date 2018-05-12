@@ -6,7 +6,7 @@
             [web.routes :as routes]
             [goog.dom :as dom]
             [share.components.root :as root]
-            ;; [cognitect.transit :as t]
+            [cognitect.transit :as t]
             ))
 
 (defn start
@@ -24,8 +24,8 @@
   ;; this is called in the index.html and must be exported
   ;; so it is available even in :advanced release builds
 
-  ;; (let [state (t/read (t/reader :json) state)]
-  ;;   (reset! db/state state))
+  (let [state (t/read (t/reader :json) state)]
+    (reset! db/state state))
   (start))
 
 (defn stop []

@@ -53,18 +53,13 @@
       m)
     (dissoc m k)))
 
-(def img-cdn "https://d15mmb60wiwqvv.cloudfront.net")
-
 (defn cdn-image
-  [name & {:keys [spec suffix]
-           :or {spec "tiny"
+  [name & {:keys [suffix width height]
+           :or {width 40
+                height 40
                 suffix "jpg"}}]
   (if name
-    (if config/development?
-      (str img-cdn "/pics/clojure_logo.png")
-      (if (= spec "original")
-        (str img-cdn "/pics/" name "." suffix)
-        (str img-cdn "/pics/" (clojure.core/name spec) "/" name "." suffix)))))
+    (str config/img-cdn "/" name "." suffix "?w=" width "&h=" height)))
 
 (defn format
   [fmt & args]
@@ -104,12 +99,6 @@
               entities)))))
 
 (defn indexed [coll] (map-indexed vector coll))
-
-(defn cdn-replace
-  [body]
-  (-> body
-      (s/replace (str img-cdn "/pics/large/") (str img-cdn "/pics/"))
-      (s/replace (str img-cdn "/pics/") (str img-cdn "/pics/large/"))))
 
 (defonce user-agent (atom nil))
 

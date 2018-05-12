@@ -125,6 +125,9 @@
      [:body
       [:div#app content]
       [:script {:src "/paper-core.min.js"}]
+      ;; Google login
+      (when-not zh-cn?
+        [:script {:src "https://apis.google.com/js/platform.js"}])
       [:script {:src (if util/development?
                        "/js/compiled/main.js"
                        (str "/main-" version ".js"))}]
@@ -144,10 +147,4 @@ if ('serviceWorker' in navigator) {
 "
         (if util/development?
           "_dev"
-          ""))]
-
-      ;; Google login
-      (when-not zh-cn?
-        [:script {:async true
-                  :defer true
-                  :src "https://apis.google.com/js/platform.js"}])])))
+          ""))]])))

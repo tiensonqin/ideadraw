@@ -52,24 +52,28 @@
     CLOSED: [2018-05-10 Thu 15:12]
 *** DONE Circle
     CLOSED: [2018-05-10 Thu 15:53]
-*** TODO Polygon
-*** TODO line
+*** DONE Polygon
+    CLOSED: [2018-05-12 Sat 09:22]
+*** DONE line
+    CLOSED: [2018-05-12 Sat 09:22]
 
 ** DONE [#A] pencil
    CLOSED: [2018-05-10 Thu 17:52]
 
-** DONE [#A] image
-   CLOSED: [2018-05-10 Thu 18:38]
 ** DONE [#A] shortcut
    CLOSED: [2018-05-10 Thu 19:20]
+** DONE Google login
+   CLOSED: [2018-05-12 Sat 11:54]
+** DONE [#A] images use imgix
+   CLOSED: [2018-05-10 Thu 18:38]
 ** TODO [#A] save
 ** TODO [#A] interactive
 ** TODO [#A] convert graph data (edn or json) to paper canvas
+** TODO [#A] copy connections
 ** TODO [#C] toolbar
 strokeColor fillcolor rotate sides
 ** TODO [#C] components
 ** TODO [#C] mobile support
-** TODO [#C] copy connections
 
 ** draw resources
    1. http://jsfiddle.net/pgkrvcdr/2/

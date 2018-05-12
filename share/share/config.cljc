@@ -9,7 +9,7 @@
 
 (def website
   (if development?
-    "http://localhost:5998"
+    "http://localhost:3667"
     "https://ideadraw.app"))
 
 (def api-host
@@ -20,7 +20,4 @@
     ""
     ".ideadraw.app"))
 
-(def website-cdn
-  (if development?
-    ""
-    "https://d2jsznkz7c07ek.cloudfront.net"))
+(def img-cdn "https://ideadraw.imgix.net")

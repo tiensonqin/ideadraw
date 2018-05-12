@@ -1,10 +1,16 @@
 (ns web.handler
-  (:require [web.handlers.draw :as draw]
-            [web.handlers.router :as router]))
+  (:require [web.handlers.user :as user]
+            [web.handlers.draw :as draw]
+            [web.handlers.router :as router]
+            [web.handlers.default :as default]
+            [web.handlers.image :as image]
+            ))
 
-;; TODO: seperate modules
 (def handler
   (atom
    (merge
+    default/handlers
+    user/handlers
     draw/handlers
-    router/handlers)))
+    router/handlers
+    image/handlers)))

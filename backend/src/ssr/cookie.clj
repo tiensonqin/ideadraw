@@ -1,6 +1,6 @@
 (ns ssr.cookie
   (:require [buddy.sign.compact :as buddy]
-            [api.config :as config]))
+            [api.config :refer [config]]))
 
 (def cookie-hash (:ssr-cookie-hash config))
 

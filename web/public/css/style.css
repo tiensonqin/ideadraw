@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import "./tooltip.css";
+@import "./dialog.css";
 /* some style */
 
 @charset "utf-8";
@@ -276,4 +277,146 @@ h1,  h2,  h3,  h4,  h5,  h6, .header-text { font-family: Georgia, "URW Bookman L
     width: 30px;
     height: 30px;
     animation: donut-spin 1.2s linear infinite;
+}
+
+input::-ms-clear,
+input::-ms-reveal {
+    display: none;
+}
+input[type="text"],
+textarea {
+    -webkit-appearance: none;
+}
+input {
+    overflow: visible;
+}
+/* search */
+.ant-input {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    padding: 4px 11px;
+    width: 100%;
+    height: 32px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.65);
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.ant-input::-moz-placeholder {
+    color: #bfbfbf;
+    opacity: 1;
+}
+.ant-input:-ms-input-placeholder {
+    color: #bfbfbf;
+}
+.ant-input::-webkit-input-placeholder {
+    color: #bfbfbf;
+}
+.ant-input:hover {
+    border-color: #7983ff;
+}
+.ant-input:focus {
+    border-color: #7983ff;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+.ant-input-disabled {
+    background-color: #f5f5f5;
+    opacity: 1;
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.25);
+}
+.ant-input-disabled:hover {
+    border-color: #e6d8d8;
+}
+textarea.ant-input {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+    -webkit-transition: all .3s, height 0s;
+    transition: all .3s, height 0s;
+    min-height: 32px;
+}
+
+.help, .is-danger {
+    color: #ff3860;
+}
+
+/* avatar */
+.ant-avatar {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.65);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+    text-align: center;
+    background: #ccc;
+    color: #fff;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 16px;
+}
+.ant-avatar > * {
+    line-height: 32px;
+}
+.ant-avatar.ant-avatar-icon {
+    font-size: 18px;
+}
+.ant-avatar-lg {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+}
+.ant-avatar-lg > * {
+    line-height: 40px;
+}
+.ant-avatar-lg.ant-avatar-icon {
+    font-size: 24px;
+}
+.ant-avatar-sm {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 12px;
+}
+.ant-avatar-sm > * {
+    line-height: 24px;
+}
+.ant-avatar-sm.ant-avatar-icon {
+    font-size: 14px;
+}
+.ant-avatar-square {
+    border-radius: 4px;
+}
+.ant-avatar > img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.top-right {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
 }

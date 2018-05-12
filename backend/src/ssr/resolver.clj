@@ -36,6 +36,7 @@
         {:keys [handler route-params]} (:ui/route req)
         uid (get-in req [:context :uid])
         q-fn (get queries handler)
+        _ (reset! su/user-agent (get-in req [:headers "user-agent"]))
         route-params (if (and (= handler :home) uid)
                        (assoc route-params :current-user uid)
                        route-params)

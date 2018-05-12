@@ -49,6 +49,23 @@
       {:status 200
        :body {:temp-user data}})))
 
+(defmethod handle :user/new [[{:keys [datasource redis]} data]]
+  (j/with-db-transaction [conn datasource]
+    (cond
+      (and (:screen_name data)
+           (du/exists? conn :users {:screen_name (:screen_name data)}))
+      (util/bad :username-exists)
+
+      (and (:email data)
+           (du/exists? conn :users {:email (:email data)}))
+      (util/bad :email-exists)
+
+      :else
+      (when-let [user (u/create conn data)]
+        {:status 200
+         :body {:user user}
+         :cookies (u/generate-tokens conn user)}))))
+
 (defmethod handle :report/new [[{:keys [uid datasource]} data]]
   (j/with-db-transaction [conn datasource]
     (do

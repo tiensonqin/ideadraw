@@ -302,8 +302,6 @@
   [^js path text-listeners]
   (let [copy ^js (path-clone path)
         items (.getItems path)]
-    ;; TODO: deep nested listeners
-    ;; (set-listeners copy group-listeners)
     (doseq [[idx item] (map-indexed vector (.getItems copy))]
       (let [k (klass item)]
         (when (= k "AreaText")
@@ -314,6 +312,11 @@
                #{"PointText" "TextItem"}
                k)
           (set-listeners item text-listeners))))
+
+    (when (= (klass copy) "AreaText")
+      (set-listeners copy (assoc text-listeners :drag? false))
+      (area-text-set-attrs! copy (get-bounds path)))
+
     (oset! copy "position" (oget path "position"))
     (oinc! (oget copy "position") "x" 12)
     (oinc! (oget copy "position") "y" 12)

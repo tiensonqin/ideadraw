@@ -10,34 +10,40 @@
   (let [code (oget e "keyCode")
         ctrl-key (oget e "ctrlKey")
         shift-key (oget e "shiftKey")
+        signup-modal? (get-in @@paper/state [:user :signup-modal?])
         {:keys [input-mode? cursor move-vector]} (get @@paper/state :draw)]
     (cond
-      (and (or (= code 8) (= code 46)) (not input-mode?))             ;backspace or delete
+      signup-modal?
+      nil
+
+      input-mode?
+      nil
+
+      (and (or (= code 8) (= code 46)))             ;backspace or delete
       (citrus/dispatch! :draw/delete-selected-path)
 
       (= code 27)
       (citrus/dispatch-sync! :draw/esc)
 
-      (and (= code 67) ctrl-key (not input-mode?)) ; Ctrl-c
+      (and (= code 67) ctrl-key) ; Ctrl-c
       (citrus/dispatch! :draw/copy-selected-path)
 
-      (and (= code 65) ctrl-key (not input-mode?)) ; Ctrl-a
+      (and (= code 65) ctrl-key) ; Ctrl-a
       (citrus/dispatch! :draw/select-all)
 
-      (and (= code 86) ctrl-key (not input-mode?)) ; Ctrl-v
+      (and (= code 86) ctrl-key) ; Ctrl-v
       (citrus/dispatch! :draw/paste-selected-path events/group-listeners events/text-listeners)
 
-      (and (= code 90) ctrl-key shift-key (not input-mode?)) ; Ctrl-Shift-z
+      (and (= code 90) ctrl-key shift-key) ; Ctrl-Shift-z
       (citrus/dispatch! :draw/redo)
 
-      (and (= code 90) ctrl-key (not input-mode?)) ; Ctrl-z
+      (and (= code 90) ctrl-key) ; Ctrl-z
       (citrus/dispatch! :draw/undo)
 
-      (and (not input-mode?) (not ctrl-key) shift-key (= code 80)) ; P
+      (and (not ctrl-key) shift-key (= code 80)) ; P
       (actions/add-polygon cursor move-vector)
 
-      (and (not input-mode?)
-           (not ctrl-key)
+      (and (not ctrl-key)
            (not shift-key))
       (case code
         82

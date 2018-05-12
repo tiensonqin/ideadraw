@@ -3,6 +3,7 @@
             [api.jwt :as jwt]
             [api.util :as util]
             [api.db.user :as u]
+            [api.handler.middleware :as api]
             [clojure.java.jdbc :as j]
             [ring.util.response :as resp]
             [api.services.slack :as slack]
@@ -36,6 +37,8 @@
                 (-> (resp/redirect "/error.html")
                     (assoc :cookies cookie/delete-token))))))
 
-        (if (not (contains? #{:get :option :head} (:request-method req)))
+        (if (and
+             (contains? #{:post :patch :delete} (:request-method req))
+             (false? (api/authenticated? req)))
           (resp/redirect "/login")
           (handler req))))))

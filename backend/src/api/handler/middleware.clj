@@ -31,7 +31,7 @@
 
 ;; TODO: rate limit
 (def mutation-whitelist
-  #{:user/new :user/google-login})
+  #{:user/new :user/google-login :auth/email})
 
 
 (defn- auth-whitelist?
