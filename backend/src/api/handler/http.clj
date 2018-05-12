@@ -4,6 +4,7 @@
             [api.config :as config]
             [api.util :as util]
             [api.db.user :as u]
+            [api.db.file :as file]
             [api.db.comment :as comment]
             [api.db.report :as report]
             [api.db.util :as du]
@@ -49,7 +50,7 @@
       {:status 200
        :body {:temp-user data}})))
 
-(defmethod handle :user/new [[{:keys [datasource redis]} data]]
+(defmethod handle :user/new [[{:keys [datasource]} data]]
   (j/with-db-transaction [conn datasource]
     (cond
       (and (:screen_name data)
@@ -65,6 +66,18 @@
         {:status 200
          :body {:user user}
          :cookies (u/generate-tokens conn user)}))))
+
+(defmethod handle :file/new [[{:keys [datasource]} data]]
+  (j/with-db-transaction [conn datasource]
+    (when-let [file (file/create conn data)]
+      {:status 200
+       :body {:file file}})))
+
+(defmethod handle :file/delete [[{:keys [datasource]} data]]
+  (j/with-db-transaction [conn datasource]
+    (file/delete conn (:id data))
+    {:status 200
+     :body {:deleted true}}))
 
 (defmethod handle :report/new [[{:keys [uid datasource]} data]]
   (j/with-db-transaction [conn datasource]

@@ -30,7 +30,7 @@
 
 (defn at-prefix
   [msg]
-  (str "@channel\n" msg))
+  (str "[ideadraw] @channel\n" msg))
 
 (defn notify
   [channel msg]

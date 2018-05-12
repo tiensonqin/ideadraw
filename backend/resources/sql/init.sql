@@ -21,9 +21,12 @@ CREATE TABLE files (
     id UUID DEFAULT uuid_generate_v4() primary key,
     flake_id bigint not null,
     user_id UUID not null,
+    name text not null default 'Untitled',
     data json not null,
     likes int not null default 0,
     views int not null default 0,
+    private boolean default true,
+    del boolean default false,
     created_at timestamp with time zone NOT NULL default (current_timestamp AT TIME ZONE 'UTC'));
   ALTER TABLE files ADD CONSTRAINT created_at_chk CHECK (EXTRACT(TIMEZONE from created_at) = '0');
 

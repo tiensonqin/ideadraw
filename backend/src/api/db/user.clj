@@ -32,8 +32,7 @@
 
 (defn create
   [db m]
-  (if-let [result (util/create db table m :flake? true)]
-    result))
+  (util/create db table m :flake? true))
 
 (defn update
   [db id m]

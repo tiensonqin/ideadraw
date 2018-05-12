@@ -4,8 +4,6 @@ var prefix = "ideadraw";
 var suffix = "{{suffix}}";
 if (workbox) {
   // console.log(`Yay! Workbox is loaded 🎉`);
-  workbox.skipWaiting();
-  workbox.clientsClaim();
   workbox.core.setCacheNameDetails({
     prefix: prefix,
     suffix: suffix

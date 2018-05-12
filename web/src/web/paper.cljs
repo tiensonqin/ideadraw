@@ -259,6 +259,10 @@
   (let [path (RegularPolygon. (clj->js m))]
     (shape path opts listeners)))
 
+(defn ff
+  [^js g]
+  (first (.getItems g)))
+
 ;; eof components
 
 (defn set-selected-style

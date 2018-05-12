@@ -825,9 +825,10 @@
    :draw/add-photo
    (fn [state url]
      (let [group-listeners (get-in state [:callbacks :group-listeners])
-           path (p/raster {:source url
-                           :position (p/get-center)}
-                          nil
-                          group-listeners)]
+           path (dc/raster {:crossOrigin "anonymous"
+                            :source url
+                            :position (p/get-center)}
+                           nil
+                           group-listeners)]
        {:state {:photo-uploading? false}
         :dispatch [:draw/set-selected path]}))})

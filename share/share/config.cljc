@@ -20,4 +20,4 @@
     ""
     ".ideadraw.app"))
 
-(def img-cdn "https://ideadraw.imgix.net")
+(def img-cdn "https://img.ideadraw.app")
