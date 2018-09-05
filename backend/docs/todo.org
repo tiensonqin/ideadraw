@@ -4,8 +4,7 @@
 
 *** Github
 *** Google
-*** Should allow ideadraw user
-
+*** whether allow hidifferent
 ** DONE group drag
    CLOSED: [2018-04-24 Tue 18:03]
 ** DONE resize
@@ -64,7 +63,7 @@
    CLOSED: [2018-05-10 Thu 19:20]
 ** DONE Google login
    CLOSED: [2018-05-12 Sat 11:54]
-** DONE Roster export
+** DONE Roster exporta
    CLOSED: [2018-05-12 Sat 19:14]
    Tainted canvases may not be exported
 ** TODO [#A] save

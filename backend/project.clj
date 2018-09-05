@@ -11,7 +11,7 @@
                  [ring/ring-defaults "0.1.4"]
                  [ring/ring-devel "1.6.3"]
                  [ring-middleware-format "0.7.2"]
-                 [org.postgresql/postgresql "9.3-1102-jdbc41"]
+                 [org.postgresql/postgresql "42.2.4"]
                  [org.clojure/java.jdbc "0.7.3"]
                  [honeysql "0.9.1"]
                  [hikari-cp "1.8.2"]
