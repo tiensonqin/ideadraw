@@ -28,7 +28,7 @@
        [:link {:rel "stylesheet"
                :href (str "/css/" name)}]
        (let [content (slurp (io/resource (str "public/" name)))]
-         [:style { :type "text/css" :dangerouslySetInnerHTML { :__html content }}])))))
+         [:style {:type "text/css" :dangerouslySetInnerHTML {:__html content}}])))))
 
 (defn render-page [content req state]
   (let [locale (:locale state)
@@ -126,8 +126,9 @@
       [:div#app content]
       [:script {:src "/paper-core.min.js"}]
       ;; Google login
-      (when-not zh-cn?
-        [:script {:src "https://apis.google.com/js/platform.js"}])
+      [:script {:src "https://apis.google.com/js/platform.js"}]
+
+      [:script {:src "https://apis.google.com/js/api:client.js"}]
       [:script {:src (if util/development?
                        "/js/compiled/main.js"
                        (str "/main-" version ".js"))}]

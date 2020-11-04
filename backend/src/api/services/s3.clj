@@ -12,7 +12,6 @@
             [bidi.bidi :as bidi])
   (:import [java.io ByteArrayInputStream]))
 
-
 (defn copy-uri-to-file [uri file]
   (with-open [in (io/input-stream uri)
               out (io/output-stream file)]
@@ -32,7 +31,7 @@
   ([name uri suffix content-type]
    (try
      (let [tmp-path (str "/tmp/" name "." suffix)
-           name (format "pics/%s.%s" name suffix)
+           name (format "%s.%s" name suffix)
            {:keys [access-key secret-key endpoint]} (:aws config)]
        (copy-uri-to-file uri tmp-path)
        (let [file (io/file tmp-path)
@@ -41,17 +40,14 @@
            (s3/put-object :bucket-name "ideadraw"
                           :key name
                           :file file
-                          :metadata {
-                                     ;; :server-side-encryption "AES256"
+                          :metadata {;; :server-side-encryption "AES256"
                                      :content-type content-type
                                      :content-length length
                                      :cache-control "public, max-age=31536000"}))
-         (str (:img-cdn config)
-              (str/replace name "pics" ""))))
+         (str (:img-cdn config) "/" name)))
      (catch Exception e
        (t/error e)
-       false)))
-  )
+       false))))
 
 (defn put-image
   [{:keys [tempfile length name png? invalidate?]
@@ -67,20 +63,17 @@
         (let [name (if name name (flake-id->str))
               name (if su/development? (str "development/" name) name)
               original-name name
-              name (format "pics/%s.%s" name image-type)
+              name (format "%s.%s" name image-type)
               {:keys [access-key secret-key endpoint]} (:aws config)]
           (core/with-credential [access-key secret-key endpoint]
             (s3/put-object :bucket-name "ideadraw"
                            :key name
-                           :metadata {
-                                      ;; :server-side-encryption "AES256"
+                           :metadata {;; :server-side-encryption "AES256"
                                       :content-type content-type
                                       :content-length length
-                                      :cache-control "public, max-age=31536000"
-                                      }
+                                      :cache-control "public, max-age=31536000"}
                            :file tempfile))
-          (str (:img-cdn config)
-               (str/replace name "pics" "")))
+          (str (:img-cdn config) "/" name))
         (catch Exception e
           (slack/error e)
           false)))))

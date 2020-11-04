@@ -9,7 +9,7 @@
 
 (def website
   (if development?
-    "http://localhost:3667"
+    "http://localhost:8083"
     "https://ideadraw.app"))
 
 (def api-host

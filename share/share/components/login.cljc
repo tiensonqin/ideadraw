@@ -18,24 +18,39 @@
        (citrus/dispatch! :user/google-login user))))
 
 
+(defn attach-sign-in
+  [el auth2]
+  #?(:cljs
+     (.attachClickHandler auth2
+                          el
+                          #js {}
+                          google-signin-success
+                          (fn [error]
+                            (prn "error: " error)
+                            (js/console.dir error)))))
+
+(defn make-google-login
+  "Turns a DOM element into a clickable Google login button.
+  First pull down the public google client-id from the server."
+  [e]
+  #?(:cljs
+     (when js/window.gapi
+       (js/window.gapi.load
+        "auth2"
+        (fn []
+          (let [auth2 (js/window.gapi.auth2.init
+                       #js{:client_id "906517456-2v8s1h6uia0p5h9emmh8f7jj1lm62egp.apps.googleusercontent.com"})]
+            (attach-sign-in e auth2)))))))
+
 (rum/defc login-button <
   {:did-mount (fn [state]
                 #?(:cljs
-                   (do
-                     (if js/window.gapi
-                       (js/window.gapi.signin2.render
-                        "g-signin2"
-                        (clj->js
-                         {:scope "profile email"
-                          :width 250
-                          :height 40
-                          :longtitle true
-                          :onsuccess google-signin-success
-                          :onfailure (fn [e]
-                                       (.log js/console e))})))))
+                   (let [el (js/document.getElementById "g-signin2")]
+                     (make-google-login el)))
                 state)}
   []
-  [:div#g-signin2.top-right])
+  [:div#g-signin2.top-right
+   [:button "Login"]])
 
 (defn signup-fields
   [user username-taken?]
@@ -61,23 +76,23 @@
         user (citrus/react [:user :temp])
         username-taken? (citrus/react [:user :username-taken?])]
     [:div#signup-modal
-    (ui/dialog
-     {:title (str "Welcome, " (:name user))
-      :on-close #(citrus/dispatch! :user/close-signup-modal?)
-      :visible modal?
-      :wrap-class-name "center"
-      :style {:width 600}
-      :animation "zoom"
-      :maskAnimation "fade"}
-     (form/render
-       {:init-state user
-        :title "Choose your username"
-        :footer (fn [_]
-                  [:div {:style {:margin-top 24}}])
-        :fields (signup-fields user username-taken?)
-        :submit-text "Signup"
-        :on-submit (fn [form-data]
-                     (let [data (-> @form-data
-                                    (assoc :oauth_id (str (:id user))
-                                           :oauth_type "google"))]
-                       (citrus/dispatch! :user/new (dissoc data :id) form-data)))}))]))
+     (ui/dialog
+      {:title (str "Welcome, " (:name user))
+       :on-close #(citrus/dispatch! :user/close-signup-modal?)
+       :visible modal?
+       :wrap-class-name "center"
+       :style {:width 600}
+       :animation "zoom"
+       :maskAnimation "fade"}
+      (form/render
+        {:init-state user
+         :title "Choose your username"
+         :footer (fn [_]
+                   [:div {:style {:margin-top 24}}])
+         :fields (signup-fields user username-taken?)
+         :submit-text "Signup"
+         :on-submit (fn [form-data]
+                      (let [data (-> @form-data
+                                     (assoc :oauth_id (str (:id user))
+                                            :oauth_type "google"))]
+                        (citrus/dispatch! :user/new (dissoc data :id) form-data)))}))]))
