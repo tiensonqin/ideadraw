@@ -22,7 +22,9 @@
                  [com.taoensso/timbre "4.10.0"]
                  [ring-cors "0.1.7"]
                  [clj-social "0.1.0"]
-                 [amazonica "0.3.115"]
+                 [com.cognitect.aws/api "0.8.474"]
+                 [com.cognitect.aws/endpoints "809.2.784.0"]
+                 [com.cognitect.aws/s3 "809.2.784.0"]
                  [org.clojure/core.async "0.3.465"]
                  [bk/ring-gzip "0.2.1"]
                  [bidi "2.1.2"]
@@ -56,4 +58,4 @@
                    :source-paths ["dev"]}
              ;; :uberjar {:main backend.application
              ;;           :aot [backend.application com.stuartsierra.component com.stuartsierra.dependency]}
-             })
+})
