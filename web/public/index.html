@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="yes" name="mobile-web-app-capable"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="summary" name="twitter:card"><meta content="@ideadraw" name="twitter:site"><meta content="Ideadraw" property="og:site_name"><meta content="#FFFFFF" name="theme-color"><link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"><link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"><link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"><link color="#5bbad5" href="/safari-pinned-tab.svg" rel="mask-icon"><meta content="#00a300" name="msapplication-TileColor"><meta content="#2A64D1" name="theme-color"><link href="/manifest.json" rel="manifest"><link href="/css/style.css" rel="stylesheet"></head><body><div id="app"></div><script src="/paper-core.min.js"></script><script src="/js/compiled/main.js"></script><script>web.core.init()</script><script>// Check that service workers are registered
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw_dev.js');
+  });
+}
+</script></body></html>

@@ -19,13 +19,12 @@
                (dom/getElement "app"))
   (citrus/dispatch-sync! :draw/set-paper-state reconciler))
 
-(defn ^:export init [state]
+(defn ^:export init []
   ;; init is called ONCE when the page loads
   ;; this is called in the index.html and must be exported
   ;; so it is available even in :advanced release builds
 
-  (let [state (t/read (t/reader :json) state)]
-    (reset! db/state state))
+  (reset! db/state {})
   (start))
 
 (defn stop []

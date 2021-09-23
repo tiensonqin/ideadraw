@@ -2,8 +2,8 @@
   :description "Ideadraw backend"
   :url "FIXME: https://github.com/fixme"
 
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [http-kit "2.2.0"]
+  :dependencies [[org.clojure/clojure "1.10.0"]
+                 [http-kit "2.5.3"]
                  [org.clojure/tools.nrepl "0.2.12"]
                  [primitive-math "0.1.6"]
                  [org.clojure/data.xml "0.0.8"]
@@ -19,7 +19,7 @@
                  [buddy/buddy-hashers "1.3.0"]
                  [environ "1.1.0"]
                  [com.stuartsierra/component "0.2.3"]
-                 [com.taoensso/timbre "4.10.0"]
+                 [com.taoensso/timbre "5.1.2"]
                  [ring-cors "0.1.7"]
                  [clj-social "0.1.0"]
                  [amazonica "0.3.115"]
@@ -27,9 +27,9 @@
                  [bk/ring-gzip "0.2.1"]
                  [bidi "2.1.2"]
                  [tiensonqin/appkit "0.1.0-SNAPSHOT"]
-
+                 [javax.xml.bind/jaxb-api "2.3.1"]
                  ;; server side rendering
-                 [org.clojure/clojurescript "1.9.946"]
+                 [org.clojure/clojurescript "1.10.879"]
                  [compojure "1.6.0"]]
 
   :source-paths ["src" "../share"]
